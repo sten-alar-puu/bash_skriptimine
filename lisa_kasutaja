@@ -1,2 +1,18 @@
-fds
+#!/bin/bash
 
+# Kontrollime, kas kasutajanimi on antud parameetrina
+if [ -z "$1" ]; then
+  echo "Kasutamine: $0 <kasutajanimi>"
+  exit 1
+fi
+
+# Loome kasutaja ja kodukataloogi
+sudo useradd -m "$1"
+
+# Kontrollime, kas kasutaja loomine õnnestus
+if [ $? -eq 0 ]; then
+  echo "Kasutaja $1 loodud edukalt."
+else
+  echo "Kasutaja loomine ebaõnnestus."
+  exit 1
+fi
